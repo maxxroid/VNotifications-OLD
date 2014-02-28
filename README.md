@@ -1,4 +1,4 @@
-VNotifications-WebPanel
+VNotifications
 =======================
 
-WebPanel for V-Notifications Project
+Android App for V-Notifications Project
