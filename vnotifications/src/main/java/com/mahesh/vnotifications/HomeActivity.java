@@ -1,6 +1,7 @@
 package com.mahesh.vnotifications;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -50,9 +51,22 @@ public class HomeActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        switch(position+1)
+        {
+            case 1:fragmentManager.beginTransaction()
+                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                    .commit();
+                break;
+            case 2:break;
+            case 3:break;
+            case 4:break;
+            case 5:break;
+            case 6:
+                startActivity(new Intent(this,PreferencesActivity.class));
+                break;
+            default:break;
+        }
+
     }
 
     public void onSectionAttached(int number) {

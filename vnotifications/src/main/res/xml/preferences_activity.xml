@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Options">
+    <PreferenceCategory android:title="Application Settings">
+        <CheckBoxPreference
+            android:title="Turn off Notification"
+            android:summary="Turn off notifications for events &amp; announcements."
+            android:key="Notification"
+            android:defaultValue="FALSE" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Miscellaneous">
+        <Preference
+            android:key="AboutApp"
+            android:title="About VNotification"></Preference>>
+        <Preference
+            android:key="ContactUs"
+            android:title="Contact VNotifications Team"
+            android:summary="via Email">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/contact_developer_uri" />
+        </Preference>
+        <Preference
+            android:key="CurrentVersion"
+            android:title="Current Version"></Preference>
+
+    </PreferenceCategory>
+</PreferenceScreen>
