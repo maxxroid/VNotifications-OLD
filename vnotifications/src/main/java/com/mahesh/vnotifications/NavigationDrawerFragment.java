@@ -94,7 +94,8 @@ public class NavigationDrawerFragment extends Fragment {
                 R.layout.fragment_navigation_drawer, container, false);
         View header = inflater.inflate(R.layout.user_navigation_module, container, false);
         TextView textUsername= (TextView) header.findViewById(R.id.textViewUsername);
-        textUsername.setText("Admin");
+        SharedPreferences prefs = getActivity().getSharedPreferences("user_account_info", 0);
+        textUsername.setText(prefs.getString("name","User"));
         mDrawerListView.addHeaderView(header);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

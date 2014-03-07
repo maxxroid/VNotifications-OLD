@@ -2,6 +2,7 @@ package com.mahesh.vnotifications;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,10 @@ public class LoginMainActivity extends ActionBarActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle("");
         loginButton = (Button) findViewById(R.id.button);
         userPassword = (EditText) findViewById(R.id.editTextPassword);
         userUsername = (EditText) findViewById(R.id.editTextUsername);
@@ -35,13 +40,12 @@ public class LoginMainActivity extends ActionBarActivity implements View.OnClick
     }
 
     private void loginAction() {
-        VerifyUser vu=new VerifyUser(userUsername.getText().toString(),userPassword.getText().toString(),this);
+        VerifyUser vu=new VerifyUser(userUsername.getText().toString(),userPassword.getText().toString(),this,this);
         vu.ValidateUser();
-        if(vu.getStatusFlag()){
-        startActivity(new Intent(this, HomeActivity.class));
-        finish();
-        }
-
     }
 
+    public void startMainActivity(){
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
+    }
 }

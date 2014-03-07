@@ -2,6 +2,7 @@ package com.mahesh.vnotifications;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -160,8 +161,7 @@ public class HomeActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Coming soon");
+
             return rootView;
         }
 
@@ -170,6 +170,15 @@ public class HomeActivity extends ActionBarActivity
             super.onAttach(activity);
             ((HomeActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            TextView textView = (TextView) getActivity().findViewById(R.id.section_label);
+            SharedPreferences prefs = getActivity().getSharedPreferences("user_account_info", 0);
+            String info=prefs.getString("name",null)+"\n"+prefs.getString("rollno",null)+"\n"+prefs.getString("year",null)+" "+prefs.getString("department",null)+" "+prefs.getString("division",null)+"\n"+prefs.getString("batch",null)+"\n"+prefs.getString("group_id",null);
+            textView.setText("Coming soon\n"+info);
         }
     }
 

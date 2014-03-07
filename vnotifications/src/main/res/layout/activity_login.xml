@@ -4,10 +4,20 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp">
-<TableLayout android:layout_width="match_parent"
+
+    <TableLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="200dp">
-    <TableRow
+        android:layout_marginTop="150dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/login_image"
+            android:cropToPadding="false"
+            android:adjustViewBounds="true" />
+
+        <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
@@ -24,8 +34,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editTextUsername"
             android:layout_weight="1"
-            android:singleLine="true"
-            android:hint="admin" />
+            android:singleLine="true" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -44,7 +53,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/editTextPassword"
             android:layout_weight="1"
-            android:hint="admin123"
             android:singleLine="true"
             android:password="true"
             android:inputType="textPassword" />
@@ -57,5 +65,7 @@
         android:text="Login"
         android:id="@+id/button"
         android:layout_gravity="right" />
-</TableLayout>
+
+    </TableLayout>
+
 </LinearLayout>
