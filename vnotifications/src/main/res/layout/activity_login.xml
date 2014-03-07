@@ -64,7 +64,8 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/button"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:textColor="#FFFFFF" />
 
     </TableLayout>
 
