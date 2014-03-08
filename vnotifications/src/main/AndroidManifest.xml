@@ -50,6 +50,7 @@
         <activity android:name=".AboutVNotificationsActivity"
             android:theme="@android:style/Theme.DeviceDefault.Dialog"
             android:label="About VNotifications" ></activity>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

@@ -51,18 +51,14 @@ public class GcmIntentService extends IntentService {
             } else if (GoogleCloudMessaging.
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
                 // This loop represents the service doing some work.
-                for (int i=0; i<5; i++) {
-                    Log.i(Config.TAG, "Working... " + (i + 1)
-                            + "/5 @ " + SystemClock.elapsedRealtime());
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                    }
-                }
-                Log.i(Config.TAG, "Completed work @ " + SystemClock.elapsedRealtime());
+                //for (int i=0; i<5; i++) {
+                 //   Log.i(Config.TAG, "Working... " + (i + 1)
+                  //          + "/5 @ " + SystemClock.elapsedRealtime());
+               // }
+                //Log.i(Config.TAG, "Completed work @ " + SystemClock.elapsedRealtime());
                 // Post notification of received message.
-                sendNotification("Received: " + extras.toString());
-                Log.i(Config.TAG, "Received: " + extras.toString());
+                sendNotification("Received: " + extras.getString("message"));
+                Log.i(Config.TAG, "Received: " + extras.getString("message"));
             }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
@@ -82,7 +78,7 @@ public class GcmIntentService extends IntentService {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("GCM Notification")
+                        .setContentTitle("New Notification")
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
                         .setContentText(msg);
