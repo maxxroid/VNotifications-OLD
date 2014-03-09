@@ -53,6 +53,7 @@
                 <!-- Light.DarkActionBar specific -->
         <item name="actionBarWidgetTheme">@style/Theme.Apptheme.Widget</item>
 
+      <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
   </style>
 
 </resources>

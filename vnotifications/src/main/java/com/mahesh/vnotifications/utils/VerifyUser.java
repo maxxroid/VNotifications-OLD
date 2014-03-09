@@ -81,6 +81,7 @@ public class VerifyUser {
                     final String Responsesrv = EntityUtils.toString(response.getEntity());
                     if (Responsesrv.trim().equals("Invalid")) {
                         Log.e("log_tag", Responsesrv);
+                        lma.showErrorMsg();
                     } else {
                         Log.e("log_tag", "LOGIN SUCCESS " + Responsesrv);
                         savetoPrefs(Responsesrv);
@@ -130,6 +131,7 @@ public class VerifyUser {
             storeRegistrationId(context, regid);
         } catch (IOException ex) {
             msg = "Error :" + ex.getMessage();
+            lma.showErrorMsg();
             // If there is an error, don't just keep trying to register.
             // Require the user to click a button again, or perform
             // exponential back-off.

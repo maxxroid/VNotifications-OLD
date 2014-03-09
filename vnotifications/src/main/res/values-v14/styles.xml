@@ -38,4 +38,24 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Apptheme</item>
     </style>
 
+    <!-- this style is for Alert Dialog -->
+    <style name="AlertDialogStyle" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:windowTitleStyle">@style/DialogWindowTitle</item>
+        <item name="android:divider">@null</item>
+    </style>
+
+    <style name="DialogWindowTitle">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAppearance">@style/DialogWindowTitleAppearance</item>
+    </style>
+
+    <style name="DialogWindowTitleAppearance" parent="@android:style/TextAppearance.Holo.DialogWindowTitle">
+        <item name="android:textColor">#ba0000</item>
+    </style>
+
 </resources>
