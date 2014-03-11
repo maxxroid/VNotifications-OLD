@@ -23,6 +23,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.mahesh.vnotifications.utils.Config;
+import com.mahesh.vnotifications.utils.SystemBarTintManager;
 import com.mahesh.vnotifications.utils.VerifyUser;
 
 import java.io.IOException;
@@ -41,11 +42,14 @@ public class LoginMainActivity extends ActionBarActivity implements View.OnClick
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
+        SystemBarTintManager tintManager=new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
         actionBar.setTitle("");
+        tintManager.setTintResource(R.drawable.ab_bottom_solid_apptheme);
+        setContentView(R.layout.activity_login);
         loginButton = (Button) findViewById(R.id.button);
         userPassword = (EditText) findViewById(R.id.editTextPassword);
         userUsername = (EditText) findViewById(R.id.editTextUsername);
@@ -119,6 +123,26 @@ public class LoginMainActivity extends ActionBarActivity implements View.OnClick
                 alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
+                    }
+                });
+
+                alertDialog.setIcon(R.drawable.ic_launcher);
+                alertDialog.show();
+            }
+        });
+    }
+
+    public void showServerErrorMsg(){
+        dialog.dismiss();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog alertDialog = new AlertDialog.Builder(LoginMainActivity.this).create();
+                alertDialog.setTitle("Error 102");
+                alertDialog.setMessage("Unable to connect.\nPlease Try Again Later");
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
                 });
 

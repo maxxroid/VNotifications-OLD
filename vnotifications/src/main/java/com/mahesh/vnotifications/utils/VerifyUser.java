@@ -44,7 +44,7 @@ public class VerifyUser {
      * from the API Console, as described in "Getting Started."
      */
     String SENDER_ID = Config.GOOGLE_SENDER_ID;
-    String regid,rollno;
+    String regid, rollno;
 
     /**
      * Tag used on log messages.
@@ -56,6 +56,7 @@ public class VerifyUser {
     final String DOMAIN = Config.DOMAIN_URL;
     boolean STATUS_FLAG = false;
     private LoginMainActivity lma;
+
 
 
     public VerifyUser(String username, String password, Context context, LoginMainActivity lma) {
@@ -80,33 +81,36 @@ public class VerifyUser {
                     HttpResponse response = httpclient.execute(httppost);
                     final String Responsesrv = EntityUtils.toString(response.getEntity());
                     if (Responsesrv.trim().equals("Invalid")) {
-                        Log.e("log_tag", Responsesrv);
+                        //Log.e("log_tag", Responsesrv);
                         lma.showErrorMsg();
                     } else {
-                        Log.e("log_tag", "LOGIN SUCCESS " + Responsesrv);
                         savetoPrefs(Responsesrv);
-                        if (checkPlayServices()) {
-                            gcm = GoogleCloudMessaging.getInstance(context);
-                            regid = getRegistrationId(context);
+                        if (validSavetoPref()) {
+                            Log.e("log_tag", "LOGIN SUCCESS ");
+                            if (checkPlayServices()) {
+                                gcm = GoogleCloudMessaging.getInstance(context);
+                                regid = getRegistrationId(context);
 
-                            if (regid.isEmpty()) {
-                                registerInBackground();
+                                if (regid.isEmpty()) {
+                                    registerInBackground();
+                                }
+                                lma.startMainActivity();
+                            } else {
+                                Log.i(TAG, "No valid Google Play Services APK found.");
+                                lma.showServerErrorMsg();
                             }
-                            lma.startMainActivity();
-                        } else {
-                            Log.i(TAG, "No valid Google Play Services APK found.");
-                        lma.showErrorMsg();
                         }
                     }
-
                 } catch (Exception e) {
                     Log.e("log_tag", "Error sending data " + e.toString());
                     e.printStackTrace();
-                    lma.showErrorMsg();
+                    lma.showServerErrorMsg();
                 }
             }
         }).start();
     }
+
+
 
     private void registerInBackground() {
         String msg = "";
@@ -131,7 +135,8 @@ public class VerifyUser {
             storeRegistrationId(context, regid);
         } catch (IOException ex) {
             msg = "Error :" + ex.getMessage();
-            lma.showErrorMsg();
+
+            lma.showServerErrorMsg();
             // If there is an error, don't just keep trying to register.
             // Require the user to click a button again, or perform
             // exponential back-off.
@@ -149,10 +154,10 @@ public class VerifyUser {
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             final String Responsesrv = EntityUtils.toString(response.getEntity());
-            Log.e("GCM Response", Responsesrv);
+            //Log.e("GCM Response", Responsesrv);
         } catch (Exception e) {
             Log.e("log_tag", "Error sending data " + e.toString());
-            lma.showErrorMsg();
+            lma.showServerErrorMsg();
         }
     }
 
@@ -172,11 +177,16 @@ public class VerifyUser {
             editor.putString("batch", json.getString("batch"));
             editor.putString("group_id", json.getString("group_id"));
             editor.commit();
-            rollno=json.getString("rollno").trim();
+            rollno = json.getString("rollno").trim();
+            STATUS_FLAG=true;
         } catch (JSONException e) {
             e.printStackTrace();
-            lma.showErrorMsg();
+            lma.showServerErrorMsg();
         }
+    }
+
+    private boolean validSavetoPref() {
+        return STATUS_FLAG;
     }
 
     private void MD5Pass() {
@@ -199,10 +209,6 @@ public class VerifyUser {
         //Log.e("log_tag", "MD5: "+hashtext);
     }
 
-    public boolean getStatusFlag() {
-        return STATUS_FLAG;
-    }
-
     private String getRegistrationId(Context context) {
         final SharedPreferences prefs = getGCMPreferences(context);
         String registrationId = prefs.getString(PROPERTY_REG_ID, "");
@@ -221,6 +227,7 @@ public class VerifyUser {
         }
         return registrationId;
     }
+
     private boolean checkPlayServices() {
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
         if (resultCode != ConnectionResult.SUCCESS) {
@@ -236,7 +243,6 @@ public class VerifyUser {
     }
 
 
-
     private static int getAppVersion(Context context) {
         try {
             PackageInfo packageInfo = context.getPackageManager()
@@ -247,6 +253,7 @@ public class VerifyUser {
             throw new RuntimeException("Could not get package name: " + e);
         }
     }
+
     private SharedPreferences getGCMPreferences(Context context) {
         // This sample app persists the registration ID in shared preferences, but
         // how you store the regID in your app is up to you.

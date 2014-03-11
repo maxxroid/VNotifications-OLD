@@ -11,6 +11,8 @@ import android.preference.PreferenceActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.mahesh.vnotifications.utils.SystemBarTintManager;
+
 /**
  * Created by Mahesh on 12/21/13.
  */
@@ -18,12 +20,11 @@ public class PreferencesActivity extends PreferenceActivity {
     Editor editor;
 
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);SystemBarTintManager tintManager=new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        tintManager.setTintResource(R.drawable.ab_bottom_solid_apptheme);
         setContentView(R.layout.preference_layout_holder);
         addPreferencesFromResource(R.xml.preferences_activity);
-        //SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        //tintManager.setStatusBarTintEnabled(true);
-        //tintManager.setTintResource(R.drawable.ab_bottom_solid_bluetheme);
 
         SharedPreferences pref = getSharedPreferences("user_settings", 0); // 0 - for private mode
         editor = pref.edit();
