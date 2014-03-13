@@ -33,6 +33,9 @@ public class DBAdapter {
     public static final String KEY_ID = "id";
     public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
+    public static final String KEY_TIMESTAMP = "timestamp";
+    public static final String KEY_LEVEL = "level";
+    public static final String KEY_POSTEDBY = "postedby";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_NAME = 1;
@@ -40,7 +43,7 @@ public class DBAdapter {
     public static final int COL_FAVCOLOUR = 3;
 
 
-    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE};
+    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE, KEY_TIMESTAMP, KEY_LEVEL, KEY_POSTEDBY};
 
     // DB info: it's name, and the table we are using (just one).
     public static final String DATABASE_NAME = "VNotifications";
@@ -62,9 +65,12 @@ public class DBAdapter {
                     //		(http://www.sqlite.org/datatype3.html)
                     //  - "not null" means it is a required field (must be given a value).
                     // NOTE: All must be comma separated (end of line!) Last one must have NO comma!!
-                    + KEY_ID + " integer not null, "
+                    + KEY_ID + " integer unique , "
                     + KEY_TITLE + " string not null, "
-                    + KEY_MESSAGE + " string not null"
+                    + KEY_MESSAGE + " string not null, "
+                    + KEY_TIMESTAMP + " string not null, "
+                    + KEY_LEVEL + " string not null, "
+                    + KEY_POSTEDBY + " string not null "
 
                     // Rest  of creation:
                     + ");";
@@ -96,20 +102,23 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String name, int studentNum, String favColour) {
-		/*
+    public long insertRow(int ID, String Title, String Message, String Timestamp, String Level, String Postedby) {
+        /*
 		 * CHANGE 3:
 		 */
         // TODO: Update data in the row with new fields.
         // TODO: Also change the function's arguments to be what you need!
         // Create row's data:
         ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_ID, name);
-        initialValues.put(KEY_TITLE, studentNum);
-        initialValues.put(KEY_MESSAGE, favColour);
+        initialValues.put(KEY_ID, ID);
+        initialValues.put(KEY_TITLE, Title);
+        initialValues.put(KEY_MESSAGE, Message);
+        initialValues.put(KEY_TIMESTAMP, Timestamp);
+        initialValues.put(KEY_LEVEL, Level);
+        initialValues.put(KEY_POSTEDBY, Postedby);
 
         // Insert it into the database.
-        return db.insert(DATABASE_TABLE, null, initialValues);
+        return db.insertOrThrow(DATABASE_TABLE, null, initialValues);
     }
 
     // Delete a row from the database, by rowId (primary key)
@@ -152,7 +161,7 @@ public class DBAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String name, int studentNum, String favColour) {
+    public boolean updateRow(long rowId, int ID, String Title, String Message, String Timestamp, String Level, String Postedby) {
         String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -162,10 +171,12 @@ public class DBAdapter {
         // TODO: Also change the function's arguments to be what you need!
         // Create row's data:
         ContentValues newValues = new ContentValues();
-        newValues.put(KEY_ID, name);
-        newValues.put(KEY_TITLE, studentNum);
-        newValues.put(KEY_MESSAGE, favColour);
-
+        newValues.put(KEY_ID, ID);
+        newValues.put(KEY_TITLE, Title);
+        newValues.put(KEY_MESSAGE, Message);
+        newValues.put(KEY_TIMESTAMP, Timestamp);
+        newValues.put(KEY_LEVEL, Level);
+        newValues.put(KEY_POSTEDBY, Postedby);
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;
     }
