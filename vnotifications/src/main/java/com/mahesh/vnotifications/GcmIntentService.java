@@ -6,13 +6,16 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.mahesh.vnotifications.utils.Config;
+import com.mahesh.vnotifications.utils.DBAdapter;
+
+import java.util.Calendar;
 
 /**
  * Created by Mahesh on 3/8/14.
@@ -53,17 +56,33 @@ public class GcmIntentService extends IntentService {
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
                 // This loop represents the service doing some work.
                 //for (int i=0; i<5; i++) {
-                 //   Log.i(Config.TAG, "Working... " + (i + 1)
-                  //          + "/5 @ " + SystemClock.elapsedRealtime());
-               // }
+                //   Log.i(Config.TAG, "Working... " + (i + 1)
+                //          + "/5 @ " + SystemClock.elapsedRealtime());
+                // }
                 //Log.i(Config.TAG, "Completed work @ " + SystemClock.elapsedRealtime());
                 // Post notification of received message.
-                sendNotification("Received: " + extras.getString("message"));
+                addToDemoDataBase(extras.getString("message"));
+                sendNotification("New Message " + extras.getString("message"));
                 Log.i(Config.TAG, "Received: " + extras.getString("message"));
             }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GcmBroadcastReceiver.completeWakefulIntent(intent);
+    }
+
+    private void addToDemoDataBase(String Title) {
+        DBAdapter da = new DBAdapter(this);
+        String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        da.open();
+        for (int i = 1; i <= 10; i++) {
+            try {
+                da.insertRow(i, Title, "Test message \nNew Line allowed\nall html content allowed\nbut no images...", mydate, "0", "Mahesh");
+                break;
+            } catch (SQLiteConstraintException e) {
+
+            }
+        }
+        da.close();
     }
 
     // Put the message into a notification and post it.

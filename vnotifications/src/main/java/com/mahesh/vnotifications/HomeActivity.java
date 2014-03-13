@@ -3,21 +3,17 @@ package com.mahesh.vnotifications;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.mahesh.vnotifications.utils.SystemBarTintManager;
@@ -39,7 +35,7 @@ public class HomeActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SystemBarTintManager tintManager=new SystemBarTintManager(this);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setTintResource(R.drawable.ab_bottom_solid_apptheme);
 
@@ -57,20 +53,28 @@ public class HomeActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        switch(position+1)
-        {
-            case 1:fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                    .commit();
+        switch (position + 1) {
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .commit();
                 break;
-            case 2:break;
-            case 3:break;
-            case 4:break;
-            case 5:break;
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, SampleListView.newInstance(position + 1))
+                        .commit();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
             case 6:
-                startActivity(new Intent(this,PreferencesActivity.class));
+                startActivity(new Intent(this, PreferencesActivity.class));
                 break;
-            default:break;
+            default:
+                break;
         }
 
     }
@@ -118,6 +122,7 @@ public class HomeActivity extends ActionBarActivity
         }
         return super.onCreateOptionsMenu(menu);
     }
+
     public void setActionBarTitle(String Title) {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -164,7 +169,7 @@ public class HomeActivity extends ActionBarActivity
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
             return rootView;
@@ -182,8 +187,8 @@ public class HomeActivity extends ActionBarActivity
             super.onActivityCreated(savedInstanceState);
             TextView textView = (TextView) getActivity().findViewById(R.id.section_label);
             SharedPreferences prefs = getActivity().getSharedPreferences("user_account_info", 0);
-            String info=prefs.getString("name",null)+"\n"+prefs.getString("rollno",null)+"\n"+prefs.getString("year",null)+" "+prefs.getString("department",null)+" "+prefs.getString("division",null)+"\n"+prefs.getString("batch",null)+"\n"+prefs.getString("group_id",null);
-            textView.setText("Coming soon\n"+info);
+            String info = prefs.getString("name", null) + "\n" + prefs.getString("rollno", null) + "\n" + prefs.getString("year", null) + " " + prefs.getString("department", null) + " " + prefs.getString("division", null) + "\n" + prefs.getString("batch", null) + "\n" + prefs.getString("group_id", null);
+            textView.setText("Coming soon\n" + info);
         }
     }
 
