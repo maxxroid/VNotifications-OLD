@@ -2,7 +2,6 @@ package com.mahesh.vnotifications;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 /**
  * Created by Mahesh on 1/3/14.

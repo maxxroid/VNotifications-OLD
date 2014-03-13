@@ -58,7 +58,6 @@ public class VerifyUser {
     private LoginMainActivity lma;
 
 
-
     public VerifyUser(String username, String password, Context context, LoginMainActivity lma) {
         this.username = username;
         this.password = password;
@@ -109,7 +108,6 @@ public class VerifyUser {
             }
         }).start();
     }
-
 
 
     private void registerInBackground() {
@@ -178,7 +176,7 @@ public class VerifyUser {
             editor.putString("group_id", json.getString("group_id"));
             editor.commit();
             rollno = json.getString("rollno").trim();
-            STATUS_FLAG=true;
+            STATUS_FLAG = true;
         } catch (JSONException e) {
             e.printStackTrace();
             lma.showServerErrorMsg();

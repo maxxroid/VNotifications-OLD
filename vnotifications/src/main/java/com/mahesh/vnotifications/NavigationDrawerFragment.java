@@ -1,16 +1,16 @@
 package com.mahesh.vnotifications;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -81,7 +81,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated (Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
@@ -89,13 +89,13 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         View header = inflater.inflate(R.layout.user_navigation_module, container, false);
-        TextView textUsername= (TextView) header.findViewById(R.id.textViewUsername);
+        TextView textUsername = (TextView) header.findViewById(R.id.textViewUsername);
         SharedPreferences prefs = getActivity().getSharedPreferences("user_account_info", 0);
-        textUsername.setText(prefs.getString("name","User"));
+        textUsername.setText(prefs.getString("name", "User"));
         mDrawerListView.addHeaderView(header);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -109,11 +109,12 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.title_section2),
-                        getString(R.string.title_section3)+" "+prefs.getString("department",""),
-                        getString(R.string.title_section4)+" "+prefs.getString("year","")+" "+prefs.getString("department","")+" "+prefs.getString("division",""),
-                        getString(R.string.title_section5)+" "+prefs.getString("batch",""),
+                        getString(R.string.title_section3) + " " + prefs.getString("department", ""),
+                        getString(R.string.title_section4) + " " + prefs.getString("year", "") + " " + prefs.getString("department", "") + " " + prefs.getString("division", ""),
+                        getString(R.string.title_section5) + " " + prefs.getString("batch", ""),
                         getString(R.string.title_section6),
-                }));
+                }
+        ));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }

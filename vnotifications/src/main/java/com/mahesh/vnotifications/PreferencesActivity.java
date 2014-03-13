@@ -9,7 +9,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.mahesh.vnotifications.utils.SystemBarTintManager;
 
@@ -20,7 +19,8 @@ public class PreferencesActivity extends PreferenceActivity {
     Editor editor;
 
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);SystemBarTintManager tintManager=new SystemBarTintManager(this);
+        super.onCreate(savedInstanceState);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setTintResource(R.drawable.ab_bottom_solid_apptheme);
         setContentView(R.layout.preference_layout_holder);
