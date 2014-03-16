@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.crashlytics.android.Crashlytics;
 import com.mahesh.vnotifications.utils.DBAdapter;
 import com.mahesh.vnotifications.utils.SystemBarTintManager;
 import com.mahesh.vnotifications.utils.VerifyUser;
@@ -35,6 +36,8 @@ public class LoginMainActivity extends ActionBarActivity implements View.OnClick
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
+
         context = getApplicationContext();
         final SharedPreferences prefs = getGCMPreferences(context);
         int registeredVersion = prefs.getInt(PROPERTY_APP_VERSION, Integer.MIN_VALUE);

@@ -51,6 +51,7 @@
             android:theme="@android:style/Theme.DeviceDefault.Dialog"
             android:label="About VNotifications" ></activity>
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="4ee2a3d3d962e85a838e4bc2fbc968cca976cad4"/>
     </application>
 
 </manifest>
