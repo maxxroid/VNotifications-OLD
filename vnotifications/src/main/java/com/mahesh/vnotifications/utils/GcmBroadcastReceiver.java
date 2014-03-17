@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.utils;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
+import com.mahesh.vnotifications.GcmIntentService;
 import com.mahesh.vnotifications.utils.Config;
 
 /**
