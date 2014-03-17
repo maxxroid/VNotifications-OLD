@@ -78,30 +78,10 @@ public class SampleListView extends Fragment {
 
     private void populateListViewFromDB() {
         Cursor cursor = myDb.getAllRows();
-
-        // Allow activity to manage lifetime of the cursor.
-        // DEPRECATED! Runs on the UI thread, OK for small/short queries.
-        //startManagingCursor(cursor);
-
-        // Setup mapping from cursor to view fields:
-        String[] fromFieldNames = new String[]
-                {DBAdapter.KEY_TITLE, DBAdapter.KEY_MESSAGE, DBAdapter.KEY_TIMESTAMP, DBAdapter.KEY_POSTEDBY};
-        int[] toViewIDs = new int[]
-                {R.id.textViewTitle, R.id.textViewMessage, R.id.textViewTime, R.id.textViewBy};
-
-        // Create adapter to may columns of the DB onto elemesnt in the UI.
-        SimpleCursorAdapter myCursorAdapter =
-                new SimpleCursorAdapter(
-                        getActivity(),        // Context
-                        R.layout.notice_item,    // Row layout template
-                        cursor,                    // cursor (set of DB records to map)
-                        fromFieldNames,            // DB Column names
-                        toViewIDs                // View IDs to put information in
-                );
-
         // Set the adapter for the list view
+        AnnCursorAdapter testc=new AnnCursorAdapter(getActivity(),R.layout.notice_item,cursor,0);
         ListView myList = (ListView) getActivity().findViewById(R.id.listView);
-        myList.setAdapter(myCursorAdapter);
+        myList.setAdapter(testc);
 
 
     }
