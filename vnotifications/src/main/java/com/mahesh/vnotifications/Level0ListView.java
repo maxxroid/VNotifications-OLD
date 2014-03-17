@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.mahesh.vnotifications.utils.AnnCursorAdapter;
 import com.mahesh.vnotifications.utils.DBAdapter;
 
 /**
@@ -43,7 +45,7 @@ public class Level0ListView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.display_listview, container, false);
+        View rootView = inflater.inflate(R.layout.announcement_homeview, container, false);
 
         return rootView;
     }
@@ -60,6 +62,8 @@ public class Level0ListView extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        TextView section= (TextView) getActivity().findViewById(R.id.textViewSection);
+        section.setText("Latest Announcements from Principal:");
         openDB();
         populateListViewFromDB();
     }
