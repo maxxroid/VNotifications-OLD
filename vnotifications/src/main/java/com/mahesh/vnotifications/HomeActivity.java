@@ -58,6 +58,7 @@ public class HomeActivity extends ActionBarActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position + 1) {
             case 1:
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, SampleListView.newInstance(position + 1))
                         .commit();
