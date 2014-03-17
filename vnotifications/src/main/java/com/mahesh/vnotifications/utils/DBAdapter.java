@@ -142,7 +142,17 @@ public class DBAdapter {
     public Cursor getAllRows() {
         String where = null;
         Cursor c = db.query(true, DATABASE_TABLE, ALL_KEYS,
-                where, null, null, null, null, null);
+                where, null, null, null, KEY_ID +" DESC",null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getLevelRows(String level) {
+        String where = "level="+level;
+        Cursor c = db.query(true, DATABASE_TABLE, ALL_KEYS,
+                where , null, null, null, KEY_ID +" DESC",null);
         if (c != null) {
             c.moveToFirst();
         }

@@ -56,19 +56,32 @@ public class HomeActivity extends ActionBarActivity
         switch (position + 1) {
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .replace(R.id.container, SampleListView.newInstance(position + 1))
                         .commit();
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, SampleListView.newInstance(position + 1))
+                        .replace(R.id.container, Level0ListView.newInstance(position + 1))
+                        .addToBackStack(null)
                         .commit();
                 break;
             case 3:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Level1ListView.newInstance(position + 1))
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 4:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Level2ListView.newInstance(position + 1))
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 5:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Level2ListView.newInstance(position + 1))
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 6:
                 startActivity(new Intent(this, PreferencesActivity.class));
