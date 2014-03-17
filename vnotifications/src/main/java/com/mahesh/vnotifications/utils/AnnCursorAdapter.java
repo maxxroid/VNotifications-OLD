@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.utils;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +8,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mahesh.vnotifications.R;
 
 
 /**
@@ -54,8 +55,8 @@ public class AnnCursorAdapter  extends ResourceCursorAdapter {
             Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
         }
         else if(level==3) {
-            Title.setTextColor(Color.YELLOW);
-            PostedBy.setTextColor(Color.YELLOW);
+            Title.setTextColor(Color.MAGENTA);
+            PostedBy.setTextColor(Color.MAGENTA);
             Title.setText(cursor.getString(cursor.getColumnIndex("title")));
             Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
             PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
