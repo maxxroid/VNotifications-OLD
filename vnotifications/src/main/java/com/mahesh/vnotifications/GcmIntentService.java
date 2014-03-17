@@ -14,8 +14,10 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.mahesh.vnotifications.utils.Config;
 import com.mahesh.vnotifications.utils.DBAdapter;
+import com.mahesh.vnotifications.utils.GcmBroadcastReceiver;
 
 import java.util.Calendar;
+import java.util.Random;
 
 /**
  * Created by Mahesh on 3/8/14.
@@ -72,11 +74,14 @@ public class GcmIntentService extends IntentService {
 
     private void addToDemoDataBase(String Title) {
         DBAdapter da = new DBAdapter(this);
+        Random r=new Random();
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        String level;
         da.open();
         for (int i = 1; i <= 10; i++) {
             try {
-                da.insertRow(i, Title, "Test message \nNew Line allowed\nall html content allowed\nbut no images...", mydate, "0", "Mahesh");
+                level= String.valueOf(r.nextInt(4));
+                da.insertRow(i, Title, "Test message <br>New Line allowed<br>all html content allowed<br>but no images...", mydate, level, "Mahesh");
                 break;
             } catch (SQLiteConstraintException e) {
 
