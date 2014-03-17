@@ -79,7 +79,7 @@ public class HomeActivity extends ActionBarActivity
                 break;
             case 5:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, Level2ListView.newInstance(position + 1))
+                        .replace(R.id.container, Level3ListView.newInstance(position + 1))
                         .addToBackStack(null)
                         .commit();
                 break;
