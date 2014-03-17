@@ -26,6 +26,9 @@ public class Level3ListView extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
+    private static String HEADER_BAR;
+    private Activity parent;
+
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -54,6 +57,8 @@ public class Level3ListView extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        parent = activity;
+        HEADER_BAR = getString(R.string.title_section5);
         ((HomeActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
@@ -69,6 +74,11 @@ public class Level3ListView extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         closeDB();
+    }
+
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity) parent).setActionBarTitle(HEADER_BAR);
     }
 
     private void openDB() {
