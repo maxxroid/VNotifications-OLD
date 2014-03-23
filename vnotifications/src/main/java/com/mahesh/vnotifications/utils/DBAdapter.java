@@ -36,6 +36,7 @@ public class DBAdapter {
     public static final String KEY_TIMESTAMP = "timestamp";
     public static final String KEY_LEVEL = "level";
     public static final String KEY_POSTEDBY = "postedby";
+    public static final String KEY_TAG = "tag";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_NAME = 1;
@@ -68,6 +69,7 @@ public class DBAdapter {
                     + KEY_ID + " integer unique , "
                     + KEY_TITLE + " string not null, "
                     + KEY_MESSAGE + " string not null, "
+                    + KEY_TAG + " string not null, "
                     + KEY_TIMESTAMP + " string not null, "
                     + KEY_LEVEL + " string not null, "
                     + KEY_POSTEDBY + " string not null "
@@ -102,7 +104,7 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(int ID, String Title, String Message, String Timestamp, String Level, String Postedby) {
+    public long insertRow(int ID, String Title, String Message, String Tag, String Timestamp,String Level, String Postedby) {
         /*
 		 * CHANGE 3:
 		 */
@@ -113,6 +115,7 @@ public class DBAdapter {
         initialValues.put(KEY_ID, ID);
         initialValues.put(KEY_TITLE, Title);
         initialValues.put(KEY_MESSAGE, Message);
+        initialValues.put(KEY_TAG,Tag);
         initialValues.put(KEY_TIMESTAMP, Timestamp);
         initialValues.put(KEY_LEVEL, Level);
         initialValues.put(KEY_POSTEDBY, Postedby);
@@ -171,7 +174,7 @@ public class DBAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, int ID, String Title, String Message, String Timestamp, String Level, String Postedby) {
+    public boolean updateRow(long rowId, int ID, String Title, String Message,String Tag, String Timestamp, String Level, String Postedby) {
         String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -184,6 +187,7 @@ public class DBAdapter {
         newValues.put(KEY_ID, ID);
         newValues.put(KEY_TITLE, Title);
         newValues.put(KEY_MESSAGE, Message);
+        newValues.put(KEY_TAG,Tag);
         newValues.put(KEY_TIMESTAMP, Timestamp);
         newValues.put(KEY_LEVEL, Level);
         newValues.put(KEY_POSTEDBY, Postedby);

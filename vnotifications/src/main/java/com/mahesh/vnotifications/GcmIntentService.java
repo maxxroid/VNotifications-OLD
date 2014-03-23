@@ -63,25 +63,23 @@ public class GcmIntentService extends IntentService {
                 // }
                 //Log.i(Config.TAG, "Completed work @ " + SystemClock.elapsedRealtime());
                 // Post notification of received message.
-                addToDemoDataBase(extras.getString("message"));
-                sendNotification("New Message " + extras.getString("message"));
-                Log.i(Config.TAG, "Received: " + extras.getString("message"));
+                addToDemoDataBase(extras.getString("title"),extras.getString("message"),extras.getString("level"),extras.getString("tag"),extras.getString("postedby"));
+                sendNotification("New Message " + extras.getString("title"));
+                Log.i(Config.TAG, "Received: " + extras);
             }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void addToDemoDataBase(String Title) {
+    private void addToDemoDataBase(String Title, String Message, String Level,String Tag, String PostedBy) {
         DBAdapter da = new DBAdapter(this);
-        Random r=new Random();
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-        String level;
         da.open();
+        Message=Message.replace("\n","<br>");
         for (int i = 1; i <= 10; i++) {
             try {
-                level= String.valueOf(r.nextInt(4));
-                da.insertRow(i, Title, "Test message <br>New Line allowed<br>all html content allowed<br>but no images...", mydate, level, "Mahesh");
+                da.insertRow(i, Title, Message,Tag, mydate, Level, PostedBy);
                 break;
             } catch (SQLiteConstraintException e) {
 
