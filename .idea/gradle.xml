@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="G:\GitHub\VNotifications" />
-            <option value="G:\GitHub\VNotifications\vnotifications" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/vnotifications" />
           </set>
         </option>
       </GradleProjectSettings>

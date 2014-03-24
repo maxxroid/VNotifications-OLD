@@ -60,7 +60,7 @@ public class HomeActivity extends ActionBarActivity
             case 1:
                 fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, SampleListView.newInstance(position + 1))
+                        .replace(R.id.container, MainListView.newInstance(position + 1))
                         .commit();
                 break;
             case 2:

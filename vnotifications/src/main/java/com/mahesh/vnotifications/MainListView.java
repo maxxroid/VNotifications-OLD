@@ -16,7 +16,7 @@ import com.mahesh.vnotifications.utils.DBAdapter;
 /**
  * Created by Mahesh on 3/11/14.
  */
-public class SampleListView extends Fragment {
+public class MainListView extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -32,15 +32,15 @@ public class SampleListView extends Fragment {
      */
     DBAdapter myDb;
 
-    public static SampleListView newInstance(int sectionNumber) {
-        SampleListView fragment = new SampleListView();
+    public static MainListView newInstance(int sectionNumber) {
+        MainListView fragment = new MainListView();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public SampleListView() {
+    public MainListView() {
     }
 
     @Override
