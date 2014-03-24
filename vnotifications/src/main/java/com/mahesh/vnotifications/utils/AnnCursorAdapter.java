@@ -28,46 +28,33 @@ public class AnnCursorAdapter  extends ResourceCursorAdapter {
         TextView Message = (TextView) view.findViewById(R.id.textViewMessage);
         TextView PostedBy = (TextView) view.findViewById(R.id.textViewBy);
         TextView Time = (TextView) view.findViewById(R.id.textViewTime);
+        TextView Tag = (TextView) view.findViewById(R.id.textViewTag);
         level=Integer.parseInt(cursor.getString(cursor.getColumnIndex("level")));
 
         if(level==0) {
-            Title.setTextColor(Color.RED);
+            Tag.setBackgroundColor(Color.RED);
             PostedBy.setTextColor(Color.RED);
-            Title.setText(cursor.getString(cursor.getColumnIndex("title")));
-            Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
-            PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
-            Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
         }
         else if(level==1) {
-            Title.setTextColor(Color.BLUE);
+            Tag.setBackgroundColor(Color.BLUE);
             PostedBy.setTextColor(Color.BLUE);
-            Title.setText(cursor.getString(cursor.getColumnIndex("title")));
-            Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
-            PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
-            Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
         }
         else if(level==2) {
-            Title.setTextColor(Color.GREEN);
-            PostedBy.setTextColor(Color.GREEN);
-            Title.setText(cursor.getString(cursor.getColumnIndex("title")));
-            Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
-            PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
-            Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
+            Tag.setBackgroundColor(Color.GRAY);
+            PostedBy.setTextColor(Color.GRAY);
         }
         else if(level==3) {
-            Title.setTextColor(Color.MAGENTA);
+            Tag.setBackgroundColor(Color.MAGENTA);
             PostedBy.setTextColor(Color.MAGENTA);
-            Title.setText(cursor.getString(cursor.getColumnIndex("title")));
-            Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
-            PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
-            Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
         }
         else
         {
-            Title.setText(cursor.getString(cursor.getColumnIndex("title")));
-            Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
-            PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
-            Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
+
         }
+        Title.setText(cursor.getString(cursor.getColumnIndex("title")));
+        Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
+        PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
+        Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
+        Tag.setText(cursor.getString(cursor.getColumnIndex("timestamp")).charAt(0));
     }
 }
