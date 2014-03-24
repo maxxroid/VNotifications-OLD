@@ -25,7 +25,6 @@ public class AnnCursorAdapter  extends ResourceCursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView Title = (TextView) view.findViewById(R.id.textViewTitle);
-        TextView Message = (TextView) view.findViewById(R.id.textViewMessage);
         TextView PostedBy = (TextView) view.findViewById(R.id.textViewBy);
         TextView Time = (TextView) view.findViewById(R.id.textViewTime);
         TextView Tag = (TextView) view.findViewById(R.id.textViewTag);
@@ -52,9 +51,8 @@ public class AnnCursorAdapter  extends ResourceCursorAdapter {
 
         }
         Title.setText(cursor.getString(cursor.getColumnIndex("title")));
-        Message.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("message"))));
         PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
         Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
-        Tag.setText(cursor.getString(cursor.getColumnIndex("timestamp")).charAt(0));
+        Tag.setText(cursor.getString(cursor.getColumnIndexOrThrow("tag")));
     }
 }

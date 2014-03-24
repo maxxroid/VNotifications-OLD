@@ -10,15 +10,15 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:text="New Text"
             android:id="@+id/textViewTag"
             android:padding="3dp"
             android:textColor="#ffffff"
             android:background="#aaaaaa"
             android:gravity="center_vertical|center_horizontal"
-            android:textSize="50dp" />
+            android:textSize="60dp" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -34,11 +34,6 @@
                 android:text="Medium Text"
                 android:id="@+id/textViewTitle" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textViewMessage" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -57,10 +52,15 @@
                     android:text="New Text"
                     android:id="@+id/textViewBy" />
 
+            </LinearLayout>
+            <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="   At "
+                    android:text="At "
                     android:id="@+id/textView2" />
 
                 <TextView

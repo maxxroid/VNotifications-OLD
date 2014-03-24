@@ -33,10 +33,10 @@ public class DBAdapter {
     public static final String KEY_ID = "id";
     public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
+    public static final String KEY_TAG = "tag";
     public static final String KEY_TIMESTAMP = "timestamp";
     public static final String KEY_LEVEL = "level";
     public static final String KEY_POSTEDBY = "postedby";
-    public static final String KEY_TAG = "tag";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_NAME = 1;
@@ -44,7 +44,7 @@ public class DBAdapter {
     public static final int COL_FAVCOLOUR = 3;
 
 
-    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE, KEY_TIMESTAMP, KEY_LEVEL, KEY_POSTEDBY};
+    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE,KEY_TAG, KEY_TIMESTAMP, KEY_LEVEL, KEY_POSTEDBY};
 
     // DB info: it's name, and the table we are using (just one).
     public static final String DATABASE_NAME = "VNotifications";
