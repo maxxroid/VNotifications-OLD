@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications.utils;
+package com.mahesh.vnotifications.beta.utils;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +8,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
-import com.mahesh.vnotifications.R;
+import com.mahesh.vnotifications.beta.R;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.beta;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mahesh.vnotifications.utils.SystemBarTintManager;
+import com.mahesh.vnotifications.beta.utils.SystemBarTintManager;
 
 public class HomeActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

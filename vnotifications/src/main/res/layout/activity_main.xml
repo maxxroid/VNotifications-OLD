@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.mahesh.vnotifications.HomeActivity">
+    tools:context="com.mahesh.vnotifications.beta.HomeActivity">
 
     <android.support.v4.widget.DrawerLayout
 
@@ -32,7 +32,7 @@
             android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:name="com.mahesh.vnotifications.NavigationDrawerFragment" />
+            android:name="com.mahesh.vnotifications.beta.NavigationDrawerFragment" />
 
     </android.support.v4.widget.DrawerLayout>
 </FrameLayout>

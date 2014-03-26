@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.beta;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.beta;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +10,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 
-import com.mahesh.vnotifications.utils.SystemBarTintManager;
+import com.mahesh.vnotifications.beta.utils.SystemBarTintManager;
 
 /**
  * Created by Mahesh on 12/21/13.

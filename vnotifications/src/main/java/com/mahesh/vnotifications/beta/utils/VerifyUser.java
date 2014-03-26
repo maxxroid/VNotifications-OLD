@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications.utils;
+package com.mahesh.vnotifications.beta.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +9,7 @@ import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.mahesh.vnotifications.LoginMainActivity;
+import com.mahesh.vnotifications.beta.LoginMainActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

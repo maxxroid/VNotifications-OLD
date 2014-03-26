@@ -1,8 +1,4 @@
-package com.mahesh.vnotifications;
-
-/**
- * Created by Mahesh on 3/17/14.
- */
+package com.mahesh.vnotifications.beta;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -14,20 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mahesh.vnotifications.utils.AnnCursorAdapter;
-import com.mahesh.vnotifications.utils.DBAdapter;
-
+import com.mahesh.vnotifications.beta.utils.AnnCursorAdapter;
+import com.mahesh.vnotifications.beta.utils.DBAdapter;
 
 /**
  * Created by Mahesh on 3/17/14.
  */
-public class Level2ListView extends Fragment {
+public class Level0ListView extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-
     private static String HEADER_BAR;
     private Activity parent;
 
@@ -37,15 +31,15 @@ public class Level2ListView extends Fragment {
      */
     DBAdapter myDb;
 
-    public static Level2ListView newInstance(int sectionNumber) {
-        Level2ListView fragment = new Level2ListView();
+    public static Level0ListView newInstance(int sectionNumber) {
+        Level0ListView fragment = new Level0ListView();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public Level2ListView() {
+    public Level0ListView() {
     }
 
     @Override
@@ -60,7 +54,7 @@ public class Level2ListView extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         parent = activity;
-        HEADER_BAR = getString(R.string.title_section4);
+        HEADER_BAR = getString(R.string.title_section2);
         ((HomeActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
@@ -69,7 +63,7 @@ public class Level2ListView extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         TextView section= (TextView) getActivity().findViewById(R.id.textViewSection);
-        section.setText("Latest Announcements from CR:");
+        section.setText("Latest Announcements from Principal:");
         openDB();
         populateListViewFromDB();
     }
@@ -95,7 +89,7 @@ public class Level2ListView extends Fragment {
     }
 
     private void populateListViewFromDB() {
-        Cursor cursor = myDb.getLevelRows("2");
+        Cursor cursor = myDb.getLevelRows("0");
         // Set the adapter for the list view
         AnnCursorAdapter testc=new AnnCursorAdapter(getActivity(),R.layout.notice_item,cursor,0);
         ListView myList = (ListView) getActivity().findViewById(R.id.listView);
@@ -104,4 +98,3 @@ public class Level2ListView extends Fragment {
 
     }
 }
-

@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.beta;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -12,12 +12,11 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.mahesh.vnotifications.utils.Config;
-import com.mahesh.vnotifications.utils.DBAdapter;
-import com.mahesh.vnotifications.utils.GcmBroadcastReceiver;
+import com.mahesh.vnotifications.beta.utils.Config;
+import com.mahesh.vnotifications.beta.utils.DBAdapter;
+import com.mahesh.vnotifications.beta.utils.GcmBroadcastReceiver;
 
 import java.util.Calendar;
-import java.util.Random;
 
 /**
  * Created by Mahesh on 3/8/14.

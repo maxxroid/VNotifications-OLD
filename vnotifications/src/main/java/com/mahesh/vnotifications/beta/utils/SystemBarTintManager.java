@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications.utils;
+package com.mahesh.vnotifications.beta.utils;
 
 /**
  * Created by Mahesh on 1/12/14.

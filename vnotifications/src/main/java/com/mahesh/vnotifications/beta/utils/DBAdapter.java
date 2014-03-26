@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications.utils;
+package com.mahesh.vnotifications.beta.utils;
 
 /**
  * Created by Mahesh on 3/9/14.
@@ -39,9 +39,13 @@ public class DBAdapter {
     public static final String KEY_POSTEDBY = "postedby";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
-    public static final int COL_NAME = 1;
-    public static final int COL_STUDENTNUM = 2;
-    public static final int COL_FAVCOLOUR = 3;
+    public static final int COL_ID = 1;
+    public static final int COL_TITLE = 2;
+    public static final int COL_MESSAGE = 3;
+    public static final int COL_TAG = 4;
+    public static final int COL_TIMESTAMP = 5;
+    public static final int COL_LEVEL = 6;
+    public static final int COL_POSTEDBY = 7;
 
 
     public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE,KEY_TAG, KEY_TIMESTAMP, KEY_LEVEL, KEY_POSTEDBY};

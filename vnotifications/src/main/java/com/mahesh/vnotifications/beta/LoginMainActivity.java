@@ -1,4 +1,4 @@
-package com.mahesh.vnotifications;
+package com.mahesh.vnotifications.beta;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -18,9 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.crashlytics.android.Crashlytics;
-import com.mahesh.vnotifications.utils.DBAdapter;
-import com.mahesh.vnotifications.utils.SystemBarTintManager;
-import com.mahesh.vnotifications.utils.VerifyUser;
+import com.mahesh.vnotifications.beta.utils.DBAdapter;
+import com.mahesh.vnotifications.beta.utils.SystemBarTintManager;
+import com.mahesh.vnotifications.beta.utils.VerifyUser;
 
 /**
  * Created by Mahesh on 2/28/14.
