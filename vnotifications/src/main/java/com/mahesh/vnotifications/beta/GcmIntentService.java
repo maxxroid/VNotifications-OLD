@@ -62,7 +62,7 @@ public class GcmIntentService extends IntentService {
                 // }
                 //Log.i(Config.TAG, "Completed work @ " + SystemClock.elapsedRealtime());
                 // Post notification of received message.
-                addToDemoDataBase(extras.getString("title"),extras.getString("message"),extras.getString("level"),extras.getString("tag"),extras.getString("postedby"));
+                addToDemoDataBase(extras.getString("title"), extras.getString("message"), extras.getString("level"), extras.getString("tag"), extras.getString("postedby"));
                 sendNotification("New Message " + extras.getString("title"));
                 Log.i(Config.TAG, "Received: " + extras);
             }
@@ -71,14 +71,14 @@ public class GcmIntentService extends IntentService {
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void addToDemoDataBase(String Title, String Message, String Level,String Tag, String PostedBy) {
+    private void addToDemoDataBase(String Title, String Message, String Level, String Tag, String PostedBy) {
         DBAdapter da = new DBAdapter(this);
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         da.open();
-        Message=Message.replace("\n","<br>");
+        Message = Message.replace("\n", "<br>");
         for (int i = 1; i <= 10; i++) {
             try {
-                da.insertRow(i, Title, Message,Tag, mydate, Level, PostedBy);
+                da.insertRow(i, Title, Message, Tag, mydate, Level, PostedBy, 1);
                 break;
             } catch (SQLiteConstraintException e) {
 

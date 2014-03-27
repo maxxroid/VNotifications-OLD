@@ -37,6 +37,7 @@ public class DBAdapter {
     public static final String KEY_TIMESTAMP = "timestamp";
     public static final String KEY_LEVEL = "level";
     public static final String KEY_POSTEDBY = "postedby";
+    public static final String KEY_SEEN = "seen";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_ID = 1;
@@ -46,9 +47,10 @@ public class DBAdapter {
     public static final int COL_TIMESTAMP = 5;
     public static final int COL_LEVEL = 6;
     public static final int COL_POSTEDBY = 7;
+    public static final int COL_SEEN = 8;
 
 
-    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE,KEY_TAG, KEY_TIMESTAMP, KEY_LEVEL, KEY_POSTEDBY};
+    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_ID, KEY_TITLE, KEY_MESSAGE, KEY_TAG, KEY_TIMESTAMP, KEY_LEVEL, KEY_POSTEDBY, KEY_SEEN};
 
     // DB info: it's name, and the table we are using (just one).
     public static final String DATABASE_NAME = "VNotifications";
@@ -76,7 +78,8 @@ public class DBAdapter {
                     + KEY_TAG + " string not null, "
                     + KEY_TIMESTAMP + " string not null, "
                     + KEY_LEVEL + " string not null, "
-                    + KEY_POSTEDBY + " string not null "
+                    + KEY_POSTEDBY + " string not null, "
+                    + KEY_SEEN + " integer "
 
                     // Rest  of creation:
                     + ");";
@@ -108,9 +111,9 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(int ID, String Title, String Message, String Tag, String Timestamp,String Level, String Postedby) {
+    public long insertRow(int ID, String Title, String Message, String Tag, String Timestamp, String Level, String Postedby, int Seen) {
         /*
-		 * CHANGE 3:
+         * CHANGE 3:
 		 */
         // TODO: Update data in the row with new fields.
         // TODO: Also change the function's arguments to be what you need!
@@ -119,10 +122,11 @@ public class DBAdapter {
         initialValues.put(KEY_ID, ID);
         initialValues.put(KEY_TITLE, Title);
         initialValues.put(KEY_MESSAGE, Message);
-        initialValues.put(KEY_TAG,Tag);
+        initialValues.put(KEY_TAG, Tag);
         initialValues.put(KEY_TIMESTAMP, Timestamp);
         initialValues.put(KEY_LEVEL, Level);
         initialValues.put(KEY_POSTEDBY, Postedby);
+        initialValues.put(KEY_SEEN, Seen);
 
         // Insert it into the database.
         return db.insertOrThrow(DATABASE_TABLE, null, initialValues);
@@ -149,7 +153,7 @@ public class DBAdapter {
     public Cursor getAllRows() {
         String where = null;
         Cursor c = db.query(true, DATABASE_TABLE, ALL_KEYS,
-                where, null, null, null, KEY_ID +" DESC",null);
+                where, null, null, null, KEY_ID + " DESC", null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -157,9 +161,9 @@ public class DBAdapter {
     }
 
     public Cursor getLevelRows(String level) {
-        String where = "level="+level;
+        String where = "level=" + level;
         Cursor c = db.query(true, DATABASE_TABLE, ALL_KEYS,
-                where , null, null, null, KEY_ID +" DESC",null);
+                where, null, null, null, KEY_ID + " DESC", null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -178,7 +182,7 @@ public class DBAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, int ID, String Title, String Message,String Tag, String Timestamp, String Level, String Postedby) {
+    public boolean updateRow(long rowId, int ID, String Title, String Message, String Tag, String Timestamp, String Level, String Postedby, int Seen) {
         String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -191,14 +195,22 @@ public class DBAdapter {
         newValues.put(KEY_ID, ID);
         newValues.put(KEY_TITLE, Title);
         newValues.put(KEY_MESSAGE, Message);
-        newValues.put(KEY_TAG,Tag);
+        newValues.put(KEY_TAG, Tag);
         newValues.put(KEY_TIMESTAMP, Timestamp);
         newValues.put(KEY_LEVEL, Level);
         newValues.put(KEY_POSTEDBY, Postedby);
+        newValues.put(KEY_SEEN, Seen);
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;
     }
 
+    public int count1unread(String level) {
+        Cursor dataCount = db.rawQuery("select count(*) from " + DATABASE_TABLE + " where level=" + level, null);
+        dataCount.moveToFirst();
+        int jcount = dataCount.getInt(0);
+        dataCount.close();
+        return jcount;
+    }
 
     /////////////////////////////////////////////////////////////////////
     //	Private Helper Classes:
