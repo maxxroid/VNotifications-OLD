@@ -18,10 +18,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mahesh.vnotifications.beta.utils.DBAdapter;
+import com.mahesh.vnotifications.beta.utils.DrawerItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -51,6 +56,7 @@ public class NavigationDrawerFragment extends Fragment {
      */
     private ActionBarDrawerToggle mDrawerToggle;
 
+    List<DrawerItem> dataList;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
@@ -58,6 +64,8 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+
+    CustomDrawerAdapter adapter;
 
     public NavigationDrawerFragment() {
     }
@@ -103,7 +111,23 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+        dataList = new ArrayList<DrawerItem>();
+        DBAdapter db = new DBAdapter(getActivity());
+        db.open();
+        dataList.add(new DrawerItem("Announcements")); // adding a header to the list
+        dataList.add(new DrawerItem(getString(R.string.title_section2), db.count1unread("0")));
+        dataList.add(new DrawerItem(getString(R.string.title_section3) + " " + prefs.getString("department", ""), db.count1unread("1")));
+        dataList.add(new DrawerItem(getString(R.string.title_section4) + " " + prefs.getString("year", "") + " " + prefs.getString("department", "") + " " + prefs.getString("division", ""), db.count1unread("2")));
+        dataList.add(new DrawerItem(getString(R.string.title_section5) + " " + prefs.getString("batch", ""), db.count1unread("3")));
+
+        dataList.add(new DrawerItem("Extras"));// adding a header to the list
+        dataList.add(new DrawerItem("Options", 0));
+        db.close();
+        adapter = new CustomDrawerAdapter(getActivity(), R.layout.custom_drawer_item,
+                dataList);
+        mDrawerListView.setAdapter(adapter);
+
+        /*mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
@@ -114,7 +138,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section5) + " " + prefs.getString("batch", ""),
                         getString(R.string.title_section6),
                 }
-        ));
+        ));*/
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -288,4 +312,6 @@ public class NavigationDrawerFragment extends Fragment {
          */
         void onNavigationDrawerItemSelected(int position);
     }
+
+
 }
