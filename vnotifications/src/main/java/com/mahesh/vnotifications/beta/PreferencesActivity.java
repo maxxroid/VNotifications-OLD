@@ -9,6 +9,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.mahesh.vnotifications.beta.utils.SystemBarTintManager;
 
@@ -46,12 +47,20 @@ public class PreferencesActivity extends PreferenceActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        CurrentVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Toast.makeText(PreferencesActivity.this,"Mahesh Liked IT!",Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
 
         Preference AboutApp = findPreference("AboutApp");
         AboutApp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(PreferencesActivity.this, AboutVNotificationsActivity.class));
+               // startActivity(new Intent(PreferencesActivity.this, AboutVNotificationsActivity.class));
+                Toast.makeText(PreferencesActivity.this,"Mahesh Made Me :P\n COMING SOON :)",Toast.LENGTH_LONG).show();
                 return false;
             }
         });
