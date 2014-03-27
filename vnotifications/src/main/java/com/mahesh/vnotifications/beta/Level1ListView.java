@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.mahesh.vnotifications.beta.utils.AnnCursorAdapter;
 import com.mahesh.vnotifications.beta.utils.DBAdapter;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 /**
  * Created by Mahesh on 3/17/14.
@@ -94,8 +95,11 @@ public class Level1ListView extends Fragment {
         // Set the adapter for the list view
         AnnCursorAdapter testc = new AnnCursorAdapter(getActivity(), R.layout.notice_item, cursor, 0);
         ListView myList = (ListView) getActivity().findViewById(R.id.listView);
-        myList.setAdapter(testc);
+        SwingBottomInAnimationAdapter swingRightInAnimationAdapter = new SwingBottomInAnimationAdapter(testc);
 
+        // Assign the ListView to the AnimationAdapter and vice versa
+        swingRightInAnimationAdapter.setAbsListView(myList);
+        myList.setAdapter(swingRightInAnimationAdapter);
 
     }
 }

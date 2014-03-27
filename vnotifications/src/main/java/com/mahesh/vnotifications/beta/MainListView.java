@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mahesh.vnotifications.beta.utils.AnnCursorAdapter;
 import com.mahesh.vnotifications.beta.utils.AnnouncementObject;
 import com.mahesh.vnotifications.beta.utils.DBAdapter;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 /**
  * Created by Mahesh on 3/11/14.
@@ -97,7 +99,11 @@ public class MainListView extends Fragment {
         // Set the adapter for the list view
         AnnCursorAdapter testc = new AnnCursorAdapter(getActivity(), R.layout.notice_item, cursor, 0);
         ListView myList = (ListView) getActivity().findViewById(R.id.listView);
-        myList.setAdapter(testc);
+        SwingBottomInAnimationAdapter swingRightInAnimationAdapter = new SwingBottomInAnimationAdapter(testc);
+
+        // Assign the ListView to the AnimationAdapter and vice versa
+        swingRightInAnimationAdapter.setAbsListView(myList);
+        myList.setAdapter(swingRightInAnimationAdapter);
     }
 
     private void registerListClickCallback() {
@@ -122,7 +128,10 @@ public class MainListView extends Fragment {
             String Tag = cursor.getString(DBAdapter.COL_TAG);
             String Postedby = cursor.getString(DBAdapter.COL_POSTEDBY);
             String Level = cursor.getString(DBAdapter.COL_LEVEL);
+            int reado=cursor.getInt(DBAdapter.COL_SEEN);
             AnnouncementObject aob = new AnnouncementObject(idDB, id, Title, Message, Timestamp, Tag, Level, Postedby);
+            if(!(reado==0))
+            myDb.updateRow(idDB,(int)id,Title,Message,Tag,Timestamp,Level,Postedby,0);
 
         }
         cursor.close();

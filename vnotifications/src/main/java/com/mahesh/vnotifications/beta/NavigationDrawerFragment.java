@@ -141,6 +141,7 @@ public class NavigationDrawerFragment extends Fragment {
         ));*/
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
+
     }
 
     public boolean isDrawerOpen() {
@@ -219,6 +220,7 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
     }
 
     private void selectItem(int position) {
@@ -287,6 +289,30 @@ public class NavigationDrawerFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) // called when drawer opens
+    {
+        if (mDrawerLayout != null && isDrawerOpen())
+        {
+            SharedPreferences prefs = getActivity().getSharedPreferences("user_account_info", 0);
+            dataList = new ArrayList<DrawerItem>();
+            DBAdapter db = new DBAdapter(getActivity());
+            db.open();
+            dataList.add(new DrawerItem("Announcements")); // adding a header to the list
+            dataList.add(new DrawerItem(getString(R.string.title_section2), db.count1unread("0")));
+            dataList.add(new DrawerItem(getString(R.string.title_section3) + " " + prefs.getString("department", ""), db.count1unread("1")));
+            dataList.add(new DrawerItem(getString(R.string.title_section4) + " " + prefs.getString("year", "") + " " + prefs.getString("department", "") + " " + prefs.getString("division", ""), db.count1unread("2")));
+            dataList.add(new DrawerItem(getString(R.string.title_section5) + " " + prefs.getString("batch", ""), db.count1unread("3")));
+
+            dataList.add(new DrawerItem("Extras"));// adding a header to the list
+            dataList.add(new DrawerItem("Options", 0));
+            db.close();
+            adapter = new CustomDrawerAdapter(getActivity(), R.layout.custom_drawer_item,
+                    dataList); // create a new cursor with the latest data (see above)
+            adapter.notifyDataSetChanged();  // do I even need this?
+            mDrawerListView.setAdapter(adapter);
+        }
+    }
 
     /**
      * Per the navigation drawer design guidelines, updates the action bar to show the global app
@@ -312,6 +338,7 @@ public class NavigationDrawerFragment extends Fragment {
          */
         void onNavigationDrawerItemSelected(int position);
     }
+
 
 
 }

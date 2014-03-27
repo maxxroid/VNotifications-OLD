@@ -6,7 +6,11 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.widget.ResourceCursorAdapter;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.mahesh.vnotifications.beta.R;
@@ -17,6 +21,7 @@ import com.mahesh.vnotifications.beta.R;
  */
 public class AnnCursorAdapter extends ResourceCursorAdapter {
     int level = 9, seen = 0;
+    private int mLastPosition = 50000;
 
     public AnnCursorAdapter(Context context, int layout, Cursor c, int flags) {
         super(context, layout, c, flags);
@@ -25,6 +30,7 @@ public class AnnCursorAdapter extends ResourceCursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+
         TextView Title = (TextView) view.findViewById(R.id.textViewTitle);
         TextView PostedBy = (TextView) view.findViewById(R.id.textViewBy);
         TextView Time = (TextView) view.findViewById(R.id.textViewTime);
@@ -53,6 +59,8 @@ public class AnnCursorAdapter extends ResourceCursorAdapter {
         Title.setText(cursor.getString(cursor.getColumnIndex("title")));
         PostedBy.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndex("postedby"))));
         Time.setText(cursor.getString(cursor.getColumnIndex("timestamp")));
-        Tag.setText(cursor.getString(cursor.getColumnIndexOrThrow("tag")));
+        Tag.setText((cursor.getString(cursor.getColumnIndexOrThrow("tag"))));
     }
+
+
 }

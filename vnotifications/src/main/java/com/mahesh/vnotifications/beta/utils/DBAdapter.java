@@ -205,7 +205,7 @@ public class DBAdapter {
     }
 
     public int count1unread(String level) {
-        Cursor dataCount = db.rawQuery("select count(*) from " + DATABASE_TABLE + " where level=" + level, null);
+        Cursor dataCount = db.rawQuery("select count(*) from " + DATABASE_TABLE + " where level=" + level + " and seen=1", null);
         dataCount.moveToFirst();
         int jcount = dataCount.getInt(0);
         dataCount.close();
