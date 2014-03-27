@@ -64,30 +64,32 @@ public class HomeActivity extends ActionBarActivity
                         .commit();
                 break;
             case 2:
+            case 3:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, Level0ListView.newInstance(position + 1))
                         .addToBackStack(null)
                         .commit();
                 break;
-            case 3:
+            case 4:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, Level1ListView.newInstance(position + 1))
                         .addToBackStack(null)
                         .commit();
                 break;
-            case 4:
+            case 5:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, Level2ListView.newInstance(position + 1))
                         .addToBackStack(null)
                         .commit();
                 break;
-            case 5:
+            case 6:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, Level3ListView.newInstance(position + 1))
                         .addToBackStack(null)
                         .commit();
                 break;
-            case 6:
+            case 7:
+            case 8:
                 startActivity(new Intent(this, PreferencesActivity.class));
                 break;
             default:
@@ -102,18 +104,20 @@ public class HomeActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
+            case 3:
                 mTitle = getString(R.string.title_section2);
                 break;
-            case 3:
+            case 4:
                 mTitle = getString(R.string.title_section3);
                 break;
-            case 4:
+            case 5:
                 mTitle = getString(R.string.title_section4);
                 break;
-            case 5:
+            case 6:
                 mTitle = getString(R.string.title_section5);
                 break;
-            case 6:
+            case 7:
+            case 8:
                 mTitle = getString(R.string.title_section6);
                 break;
         }

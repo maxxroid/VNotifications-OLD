@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mahesh.vnotifications.beta.utils.AnnCursorAdapter;
 import com.mahesh.vnotifications.beta.utils.AnnouncementObject;
@@ -67,12 +65,13 @@ public class MainListView extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TextView section= (TextView) getActivity().findViewById(R.id.textViewSection);
+        TextView section = (TextView) getActivity().findViewById(R.id.textViewSection);
         section.setText("Latest Announcements:");
         openDB();
         populateListViewFromDB();
         registerListClickCallback();
     }
+
     public void onResume() {
         super.onResume();
         ((HomeActivity) parent).setActionBarTitle(HEADER_BAR);
@@ -96,7 +95,7 @@ public class MainListView extends Fragment {
     private void populateListViewFromDB() {
         Cursor cursor = myDb.getAllRows();
         // Set the adapter for the list view
-        AnnCursorAdapter testc=new AnnCursorAdapter(getActivity(),R.layout.notice_item,cursor,0);
+        AnnCursorAdapter testc = new AnnCursorAdapter(getActivity(), R.layout.notice_item, cursor, 0);
         ListView myList = (ListView) getActivity().findViewById(R.id.listView);
         myList.setAdapter(testc);
     }
@@ -116,14 +115,14 @@ public class MainListView extends Fragment {
         Cursor cursor = myDb.getRow(idInDB);
         if (cursor.moveToFirst()) {
             long idDB = cursor.getLong(DBAdapter.COL_ROWID);
-            long id= cursor.getLong(DBAdapter.COL_ID);
+            long id = cursor.getLong(DBAdapter.COL_ID);
             String Title = cursor.getString(DBAdapter.COL_TITLE);
             String Message = cursor.getString(DBAdapter.COL_MESSAGE);
             String Timestamp = cursor.getString(DBAdapter.COL_TIMESTAMP);
             String Tag = cursor.getString(DBAdapter.COL_TAG);
             String Postedby = cursor.getString(DBAdapter.COL_POSTEDBY);
             String Level = cursor.getString(DBAdapter.COL_LEVEL);
-            AnnouncementObject aob=new AnnouncementObject(idDB,id,Title,Message, Timestamp,Tag,Level,Postedby);
+            AnnouncementObject aob = new AnnouncementObject(idDB, id, Title, Message, Timestamp, Tag, Level, Postedby);
 
         }
         cursor.close();

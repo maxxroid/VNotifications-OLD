@@ -62,8 +62,8 @@ public class Level0ListView extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TextView section= (TextView) getActivity().findViewById(R.id.textViewSection);
-        section.setText("Latest Announcements from Principal:");
+        TextView section = (TextView) getActivity().findViewById(R.id.textViewSection);
+        section.setText("Latest Announcements:");
         openDB();
         populateListViewFromDB();
     }
@@ -91,7 +91,7 @@ public class Level0ListView extends Fragment {
     private void populateListViewFromDB() {
         Cursor cursor = myDb.getLevelRows("0");
         // Set the adapter for the list view
-        AnnCursorAdapter testc=new AnnCursorAdapter(getActivity(),R.layout.notice_item,cursor,0);
+        AnnCursorAdapter testc = new AnnCursorAdapter(getActivity(), R.layout.notice_item, cursor, 0);
         ListView myList = (ListView) getActivity().findViewById(R.id.listView);
         myList.setAdapter(testc);
 

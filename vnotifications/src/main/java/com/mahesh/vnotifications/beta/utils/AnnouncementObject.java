@@ -4,8 +4,8 @@ package com.mahesh.vnotifications.beta.utils;
  * Created by Mahesh on 3/26/2014.
  */
 public class AnnouncementObject {
-    long _id,id;
-    String Title,Message,Timestamp,Tag,Level,Postedby;
+    long _id, id;
+    String Title, Message, Timestamp, Tag, Level, Postedby;
 
     public AnnouncementObject(long _id, long id, String title, String message, String timestamp, String tag, String level, String postedby) {
         this._id = _id;
